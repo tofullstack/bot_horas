@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: horas-telegram-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 2 -b 0.0.0.0:$PORT app:app
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: CONSULTA_HORAS_API_KEY
+        sync: false
+      - key: CONSULTA_HORAS_API_URL
+        sync: false
+      - key: TELEGRAM_WEBHOOK_SECRET
+        sync: false
